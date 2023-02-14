@@ -21,7 +21,7 @@
   "scripts": {
     "clean:dist": "node -e \"require('fs').rm('dist',{recursive:true,force:true},()=>{});\"",
     "clean:lib": "node -e \"require('fs').rm('lib',{recursive:true,force:true},()=>{});\"",
-    "clean": "npm run clean:dist clean:lib",
+    "clean": "npm run clean:dist && npm run clean:lib",
     "prebuild": "npm run clean && tsc",
     "build": "ncc build --minify"
   },
