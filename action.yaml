@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-action.json
+---
+name: Get Github App Token
+author: W Anders <w@doubleu.codes>
+description: Get a token to run an Action as a Github App
+inputs:
+  app_id:
+    required: true
+    description: Application ID of the Github App
+  app_key_pem:
+    required: true
+    description: Github App PEM-encoded private key
+outputs:
+  token:
+    description: The bearer token used to perform Actions as a Github App
+runs:
+  using: node16
+  main: dist/index.js
