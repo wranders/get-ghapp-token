@@ -66,8 +66,15 @@ declare global {
 
 async function requestApi<Type>(opts: RequestOptions): Promise<Type> {
   return new Promise<Type>((resolve, reject) => {
+    const reqOpts: RequestOptions = {
+      ...opts,
+      headers: {
+        ...opts.headers,
+        'User-Agent': 'wranders/get-ghapp-token',
+      },
+    };
     let responseBody = '';
-    const req: ClientRequest = request(opts, (response) => {
+    const req: ClientRequest = request(reqOpts, (response) => {
       response.setEncoding('utf-8');
       response.on('data', (chunk) => {
         responseBody += chunk;
