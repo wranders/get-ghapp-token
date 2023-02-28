@@ -1,0 +1,21 @@
+name: test
+on:
+  push:
+    branches:
+    - 'master'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./
+      id: get-token
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        app_key_pem: ${{ secrets.APP_PRIVATE_KEY }}
+    - run: |
+        curl -o /dev/null -s -w "%{http_code}" \
+        -H 'User-Agent: wranders/get-ghapp-token/test' \
+        -H 'Authorization: Bearer ${{ steps.get-token.outputs.token }}' \
+        https://api.github.com/repos/wranders/get-ghapp-token
