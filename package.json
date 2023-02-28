@@ -2,7 +2,8 @@
   "name": "get-ghapp-token",
   "description": "Login and perform actions as a Github Application",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "0.0.0",
+  "private": true,
   "author": {
     "name": "W Anders",
     "email": "w@doubleu.codes",
@@ -10,28 +11,33 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wranders/get-ghapp-token.git"
+    "url": "git+https://github.com/wranders/get-ghapp-token.git"
+  },
+  "homepage": "https://github.com/wranders/get-ghapp-token#readme",
+  "bugs": {
+    "url": "https://github.com/wranders/get-ghapp-token/issues"
   },
   "main": "lib/index.js",
-  "type": "module",
-  "files": [
-    "action.yaml",
-    "dist"
-  ],
   "scripts": {
+    "lint": "eslint index.ts",
+    "format": "prettier --write index.ts",
     "clean:dist": "node -e \"require('fs').rm('dist',{recursive:true,force:true},()=>{});\"",
     "clean:lib": "node -e \"require('fs').rm('lib',{recursive:true,force:true},()=>{});\"",
     "clean": "npm run clean:dist && npm run clean:lib",
-    "prebuild": "npm run clean && tsc",
-    "build": "ncc build --minify"
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "prepackage": "npm run build",
+    "package": "ncc build --minify --source-map --license licenses.txt"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.0"
   },
   "devDependencies": {
-    "@actions/core": "^1.10.0",
-    "@types/node": "^18.13.0",
-    "@typescript-eslint/eslint-plugin": "^5.52.0",
-    "@typescript-eslint/parser": "^5.52.0",
+    "@types/node": "^18.14.2",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
     "@vercel/ncc": "^0.36.1",
-    "eslint": "^8.34.0",
+    "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.4",
