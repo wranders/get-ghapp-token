@@ -4,49 +4,26 @@ import { ClientRequest } from 'http';
 import { request, RequestOptions } from 'https';
 import { format } from 'util';
 
-/**
- *
- */
 type JWTHeader = {
   alg: 'RS256';
   typ: 'JWT';
 };
 
-/**
- *
- */
 type JWTPayload = {
   iat: number;
   exp: number;
   iss: string;
 };
 
-/**
- *
- * @param obj
- * @param enc
- * @returns
- */
 function base64(obj: JWTHeader | JWTPayload, enc: BufferEncoding): string {
   const json: string = JSON.stringify(obj);
   return urlBase64(Buffer.from(json, enc).toString('base64'));
 }
 
-/**
- *
- * @param input
- * @returns
- */
 function urlBase64(input: string): string {
   return input.replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
 }
 
-/**
- *
- * @param appID
- * @param privateKey
- * @returns
- */
 function getJWT(appID: string, privateKey: string): string {
   const header: JWTHeader = {
     alg: 'RS256',
@@ -69,9 +46,6 @@ function getJWT(appID: string, privateKey: string): string {
   return format('%s.%s', content, urlBase64(signature));
 }
 
-/**
- *
- */
 type Installations = {
   id: number;
   account: {
@@ -80,9 +54,6 @@ type Installations = {
   };
 }[];
 
-/**
- *
- */
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace NodeJS {
@@ -93,11 +64,6 @@ declare global {
   }
 }
 
-/**
- *
- * @param opts
- * @returns
- */
 async function requestApi<Type>(opts: RequestOptions): Promise<Type> {
   return new Promise<Type>((resolve, reject) => {
     let responseBody = '';
@@ -123,12 +89,6 @@ async function requestApi<Type>(opts: RequestOptions): Promise<Type> {
   });
 }
 
-/**
- *
- * @param jwt
- * @param repoOwnerID
- * @returns
- */
 async function getInstallation(
   jwt: string,
   repoOwnerID: number,
@@ -150,19 +110,10 @@ async function getInstallation(
   return obj.id;
 }
 
-/**
- *
- */
 type InstallationAccessToken = {
   token: string;
 };
 
-/**
- *
- * @param jwt
- * @param installation
- * @returns
- */
 async function getToken(jwt: string, installation: number): Promise<string> {
   const reqOptions: RequestOptions = {
     method: 'POST',
