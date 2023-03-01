@@ -16,6 +16,6 @@ jobs:
         app_key_pem: ${{ secrets.APP_PRIVATE_KEY }}
     - run: |
         curl -o /dev/null -s -w "%{http_code}" \
-        -H 'User-Agent: wranders/get-ghapp-token/test' \
+        -H 'User-Agent: wranders/ghapp-token-action/test' \
         -H 'Authorization: Bearer ${{ steps.get-token.outputs.token }}' \
-        https://api.github.com/repos/wranders/get-ghapp-token
+        https://api.github.com/repos/wranders/ghapp-token-action

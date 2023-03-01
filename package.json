@@ -1,5 +1,5 @@
 {
-  "name": "get-ghapp-token",
+  "name": "ghapp-token-action",
   "description": "Login and perform actions as a Github Application",
   "license": "MIT",
   "version": "0.0.0",
@@ -7,15 +7,15 @@
   "author": {
     "name": "W Anders",
     "email": "w@doubleu.codes",
-    "url": "https://github.com/wranders/get-ghapp-token"
+    "url": "https://github.com/wranders/ghapp-token-action"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wranders/get-ghapp-token.git"
+    "url": "git+https://github.com/wranders/ghapp-token-action.git"
   },
-  "homepage": "https://github.com/wranders/get-ghapp-token#readme",
+  "homepage": "https://github.com/wranders/ghapp-token-action#readme",
   "bugs": {
-    "url": "https://github.com/wranders/get-ghapp-token/issues"
+    "url": "https://github.com/wranders/ghapp-token-action/issues"
   },
   "main": "lib/index.js",
   "scripts": {

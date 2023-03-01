@@ -70,7 +70,7 @@ async function requestApi<Type>(opts: RequestOptions): Promise<Type> {
       ...opts,
       headers: {
         ...opts.headers,
-        'User-Agent': 'wranders/get-ghapp-token',
+        'User-Agent': 'wranders/ghapp-token-action',
       },
     };
     let responseBody = '';

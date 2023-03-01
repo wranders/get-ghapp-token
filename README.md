@@ -23,7 +23,7 @@ An access token to perform tasks on behalf of the App.
 ## Example usage
 
 ```yaml
-- uses: wranders/get-ghapp-token@v1
+- uses: wranders/ghapp-token-action@v1
   id: get-token
   with:
     app_id: ${{ secrets.APP_ID }}
