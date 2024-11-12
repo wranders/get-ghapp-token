@@ -14,7 +14,7 @@ outputs:
   token:
     description: The bearer token used to perform Actions as a Github App
 runs:
-  using: node16
+  using: node20
   main: dist/index.js
 branding:
   icon: lock
